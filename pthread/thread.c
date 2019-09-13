@@ -7,6 +7,7 @@
 
 void *do_loop(void *data)
 {
+
     int i;
 
     int me = *((int *)data);
