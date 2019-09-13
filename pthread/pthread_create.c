@@ -7,7 +7,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-// ������ �Լ�
 void *t_function(void *data) 
 {
     int id;
@@ -29,7 +28,6 @@ int main() {
     int a = 1;
     int b = 2;
 
-    // ������ ���� �ƱԸ�Ʈ�� 1 �� �ѱ��.  
     thr_id = pthread_create(&p_thread[0], NULL, t_function, (void *)&a);
     if (thr_id < 0)
     {
@@ -37,7 +35,6 @@ int main() {
         exit(0);
     }
 
-    // ������ ���� �ƱԸ�Ʈ�� 2 �� �ѱ��. 
     thr_id = pthread_create(&p_thread[1], NULL, t_function, (void *)&b);
     if (thr_id < 0)
     {
@@ -45,7 +42,6 @@ int main() {
         exit(0);
     }
 
-    // ������ ���Ḧ ��ٸ���. 
     pthread_join(p_thread[0], (void **)&status);
     pthread_join(p_thread[1], (void **)&status);
 
