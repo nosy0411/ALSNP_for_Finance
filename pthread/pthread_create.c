@@ -7,7 +7,8 @@
 #include <stdlib.h>
 
 // 쓰레드 함수
-void *t_function(void *data) {
+void *t_function(void *data) 
+{
     int id;
     int i = 0;
     id = *((int *)data);
