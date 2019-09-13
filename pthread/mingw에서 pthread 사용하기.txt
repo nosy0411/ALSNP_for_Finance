@@ -1,0 +1,40 @@
+mingw에서 pthread 사용하기
+
+먼저 MinGW에서 pthread를 사용하기 위해 Open Source POSIX Threads for Win32를 사용한다.
+
+사이트 : https://sourceware.org/pthreads-win32/
+
+
+1.
+ftp://sourceware.org/pub/pthreads-win32 -> pthreads-w32-2-9-1-release.zip을 다운받는다(나의 경우)
+
+2.
+압축을 푼 뒤 Pre-built.2\include안의 파일들을 MinGW\include 안에 복사한다.
+* gcc로 컴파일 시 pthread.h 파일을 찾을 수 있어야 하기 때문에 필요하다.
+
+3.
+Pre-built.2\lib\x86 안의 libpthreadGC2.a 파일과 libpthreadGCE2.a 파일을 MinGW\lib 안에 복사한다.
+* 설치환경에 따라 x64 혹은 x86을 선택. 나의 경우 x86
+* 라이브러리를 링킹하는 과정에서 위의 두 파일이 필요하다.
+
+4.
+Pre-built.2\dll\x86 안의 pthreadGC2.dll 파일과 pthreadGCE2.dll 파일을 MinGW\bin 안에 복사한다.
+* 설치환경에 따라 x64 혹은 x86을 선택. 나의 경우 x86
+* 2,3번과 달리 4번은 굳이 bin폴더가 아니어도 path가 잡혀있는 경로라면 ok.
+
+5.
+pthread 라이브러리를 사용하는 c소스코드를 빌드 할 때 -lpthread 옵션 대신 -lpthreadGC2로 옵션을 주어야 한다.
+사실 당연한 건데, pthreads-win32에서 제공하는 라이브러리 파일의 이름이 libpthreadGC2.a 라서 그렇다.
+-lpthreadGC2 옵션을 해석하면, libpthreadGC2.a 라는 라이브러리 파일을 지정된 디렉토리에서 찾으라는 말이다.
+* -lpthreadGC2에서 l은 소문자 엘이다.
+* gcc에서 -l(소문자 엘)옵션과 -I(대문자 아이)옵션과 -L(대문자 엘)옵션은 모두 다른 의미를 가진다.
+* 관련 참고 글 : http://huammmm1.tistory.com/458
+
+6.
+한 가지 더. -lpthread던 -lpthreadGC2던 이 옵션은 가장 마지막에 기술해야 한다. gcc 사용 시 라이브러리에 대한
+옵션은 지정하는 순서가 중요한 의미를 가지기 때문에 맨 마지막에 두는 것과 그렇지 않은 것에는 차이가 있다.
+관련 정보 : http://stackoverflow.com/questions/10213635/linker-errors-in-compiling-a-simple-pthread-code-under-mingw
+
+
+time.h 와 pthread.h의 timespec 구조체 충돌 관련
+https://stackoverflow.com/questions/33557506/timespec-redefinition-error
