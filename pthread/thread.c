@@ -7,7 +7,6 @@
 
 void *do_loop(void *data)
 {
-
     int i;
 
     int me = *((int *)data);
@@ -35,6 +34,6 @@ int main()
     pthread_join(p_thread[1], (void **)&status);
     pthread_join(p_thread[2], (void **)&status);
 
-    printf("programing is finished\n");
+    printf("programing is ended\n");
     return 0;
 }
