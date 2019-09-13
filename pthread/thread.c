@@ -1,6 +1,7 @@
 #define HAVE_STRUCT_TIMESPEC
 // https://stackoverflow.com/questions/33557506/timespec-redefinition-error
 // command line - gcc -IC:/MinGW/include/ -LC:/MinGW/bin/ -o thread thread.c -lpthreadGC2
+//command line - gcc -o thread thread.c -lpthread
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
