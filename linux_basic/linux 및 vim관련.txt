@@ -1,0 +1,13 @@
+linux man-page
+https://www.kernel.org/doc/man-pages/
+
+
+vim 게임으로 배우기
+https://vim-adventures.com/
+
+초보자를 위한 vim
+https://www.joinc.co.kr/w/Site/Vim/Documents/UsedVim
+
+
+eclipse
+https://www.eclipse.org/downloads/packages/release/luna/r/eclipse-ide-cc-developers
